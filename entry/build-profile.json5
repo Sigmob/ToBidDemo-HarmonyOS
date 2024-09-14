@@ -4,10 +4,10 @@
     "arkOptions": {
       "runtimeOnly": {
         "packages": [
-          'tobid_kuaishou_adapter',
-          'tobid_huawei_adapter',
-          'tobid_csj_adapter',
-          'tobid_gromore_adapter'
+//          'tobid_kuaishou_adapter',
+//          'tobid_huawei_adapter',
+//          'tobid_csj_adapter',
+//          'tobid_gromore_adapter'
         ]
       }
     }
