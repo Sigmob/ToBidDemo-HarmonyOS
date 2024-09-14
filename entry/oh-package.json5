@@ -6,12 +6,12 @@
   "author": "",
   "license": "",
   "dependencies": {
-    "tobidadsdk": "file:../libs/tobid-sdk-ohos/Core/tobidadsdk-1.2.0-release.har",
+    "@tobid/adsdk": "file:../libs/tobid-sdk-ohos/Core/tobidadsdk-1.2.0-release.har",
     "wind_common": "file:../libs/tobid-sdk-ohos/Core/wind_common-0.3.24.har",
-    "tobid_kuaishou_adapter": "file:../libs/tobid-sdk-ohos/AdNetworks/kuaishou/tobid_kuaishou_adapter-1.2.0-release.har",
-    "tobid_huawei_adapter": "file:../libs/tobid-sdk-ohos/AdNetworks/huawei/tobid_huawei_adapter-1.2.0-release.har",
-    "tobid_gromore_adapter": "file:../libs/tobid-sdk-ohos/AdNetworks/gromore/tobid_gromore_adapter-1.2.0-release.har",
-    "tobid_csj_adapter": "file:../libs/tobid-sdk-ohos/AdNetworks/csj/tobid_csj_adapter-1.2.0-release.har",
+    "@tobid/kuaishou_adapter": "file:../libs/tobid-sdk-ohos/AdNetworks/kuaishou/tobid_kuaishou_adapter-1.2.0-release.har",
+    "@tobid/huawei_adapter": "file:../libs/tobid-sdk-ohos/AdNetworks/huawei/tobid_huawei_adapter-1.2.0-release.har",
+    "@tobid/gromore_adapter": "file:../libs/tobid-sdk-ohos/AdNetworks/gromore/tobid_gromore_adapter-1.2.0-release.har",
+    "@tobid/csj_adapter": "file:../libs/tobid-sdk-ohos/AdNetworks/csj/tobid_csj_adapter-1.2.0-release.har",
     "@csj/openadsdk": "file:../libs/tobid-sdk-ohos/AdNetworks/csj/openadsdk-64.0.0-alpha.62.har",
     "ksadsdk": "file:../libs/tobid-sdk-ohos/AdNetworks/kuaishou/ksadsdk-2.0.3-beta.har"
   }
