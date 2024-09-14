@@ -1,6 +1,20 @@
 {
   "app": {
-    "signingConfigs": [],
+    "signingConfigs": [
+      {
+        "name": "default",
+        "type": "HarmonyOS",
+        "material": {
+          "certpath": "/Users/happyelements/.ohos/config/default_ToBidDemo-HarmonyOS_dgJPnhAjm0JJ5JMbt3H5ua0hEwJZhFWxRO-62IHo1XA=.cer",
+          "storePassword": "0000001B58C654066D81E816798C4EE1D2C088519231382F63CA25EFE284F3574D0789C7C46593035AD935",
+          "keyAlias": "debugKey",
+          "keyPassword": "0000001B2A6B3CC323DF39EF9BEA42BAFF492301AD5E33F48B4B98B412741D8338869E9D79160758DC0D7E",
+          "profile": "/Users/happyelements/.ohos/config/default_ToBidDemo-HarmonyOS_dgJPnhAjm0JJ5JMbt3H5ua0hEwJZhFWxRO-62IHo1XA=.p7b",
+          "signAlg": "SHA256withECDSA",
+          "storeFile": "/Users/happyelements/.ohos/config/default_ToBidDemo-HarmonyOS_dgJPnhAjm0JJ5JMbt3H5ua0hEwJZhFWxRO-62IHo1XA=.p12"
+        }
+      }
+    ],
     "products": [
       {
         "name": "default",
