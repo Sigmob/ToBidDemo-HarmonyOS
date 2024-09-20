@@ -1,5 +1,10 @@
 {
   "src": [
-    "pages/Index"
+    "pages/Index",
+    "ads/splashAd/pages/SplashAdPage",
+    "ads/bannerAd/pages/BannerAdPage",
+    "ads/interstitialAd/pages/InterstitialAdPage",
+    "ads/nativeAd/pages/NativeAdPage",
+    "ads/rewardVideoAd/pages/RewardVideoAdPage"
   ]
 }

@@ -1,0 +1,32 @@
+{
+  "float": [
+    {
+      "name": "image_cell_size",
+      "value": "22vp"
+    },
+    {
+      "name": "small_text_size",
+      "value": "14fp"
+    },
+    {
+      "name": "normal_text_size",
+      "value": "16fp"
+    },
+    {
+      "name": "padding_normal",
+      "value": "10vp"
+    },
+    {
+      "name": "arrow_jump_width",
+      "value": "24vp"
+    },
+    {
+      "name": "arrow_jump_height",
+      "value": "12vp"
+    },
+    {
+      "name": "big_text_size",
+      "value": "18fp"
+    }
+  ]
+}

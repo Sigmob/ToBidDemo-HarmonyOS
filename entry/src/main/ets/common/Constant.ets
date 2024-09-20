@@ -1,0 +1,28 @@
+export default class Constant {
+  /**
+   * log tag
+   */
+  static readonly TAG = '[Codi]';
+
+  static readonly _CONTAINER_ = '__container__';
+  /**
+   * 宽或者高100%
+   */
+  static readonly FULL_PARENT = '100%';
+  /**
+   * 统一间距
+   */
+  static readonly COMMON_SPACE = 12;
+  /**
+   * 单元格行高
+   */
+  static readonly CELL_HEIGHT_NORMAL = 44;
+  /**
+   * 下拉选择框行高
+   */
+  static readonly SELECTOR_CELL_HEIGHT = 35;
+  /**
+   * 线条高度
+   */
+  static readonly LINE_HEIGHT_NORMAL = 1;
+}

@@ -3,6 +3,34 @@
     {
       "name": "start_window_background",
       "value": "#FFFFFF"
+    },
+    {
+      "name": "main_color",
+      "value": "#f2690b"
+    },
+    {
+      "name": "tabs_selected",
+      "value": "#f2690b"
+    },
+    {
+      "name": "tabs_normal",
+      "value": "#8a8a8a"
+    },
+    {
+      "name": "mainPage_backgroundColor",
+      "value": "#F1F3F5"
+    },
+    {
+      "name": "font_main_color_light",
+      "value": "#ffffff"
+    },
+    {
+      "name": "font_main_color_dark",
+      "value": "#000000"
+    },
+    {
+      "name": "font_gray_color",
+      "value": "#8a8a8a"
     }
   ]
 }
