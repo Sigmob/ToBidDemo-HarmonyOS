@@ -31,8 +31,9 @@ struct InterstitialAdPage {
   navigationBuilder() {
     NavigationBarView({
       title: this.title,
-      showBack: false,
+      showBack: true,
       naviBackgroundColor: $r('app.color.main_color'),
+      backClick: () => router.back(),
     })
   }
 
