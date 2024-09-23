@@ -42,11 +42,37 @@ struct SplashAdPage {
   @Builder
   contentBuilder() {
     List() {
-      TitleComponent({
-        title: '开启底部品牌区域',
-        rowType: RowType.switch,
-        value: true
+      ListItem() {
+        TitleComponent({
+          title: '加载广告',
+          icon: $r('app.media.icon_load'),
+          rowType: RowType.none,
+        })
+      }
+      .margin({
+        top: $r('app.float.padding_normal'),
       })
+
+      ListItem() {
+        TitleComponent({
+          title: '播放广告',
+          icon: $r('app.media.icon_play'),
+          rowType: RowType.none,
+        })
+      }
+
+      ListItem() {
+        TitleComponent({
+          title: '开启底部品牌区域',
+          rowType: RowType.switch,
+          value: true
+        })
+      }
+      .margin({
+        top: $r('app.float.padding_normal'),
+        bottom: $r('app.float.padding_normal')
+      })
+
     }
     .width(Constant.FULL_PARENT)
     .height(Constant.FULL_PARENT)
