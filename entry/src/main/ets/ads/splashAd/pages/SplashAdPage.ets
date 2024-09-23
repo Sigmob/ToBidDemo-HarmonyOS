@@ -1,12 +1,14 @@
 import { NavigationBarView } from '../../../components/navigation/NavigationBarView';
 import { NavigationView } from '../../../components/navigation/NavigationView';
 import { router } from '@kit.ArkUI';
+import Constant from '../../../common/Constant';
+import { TitleComponent } from '../../../components/views/TitleComponent';
+import { RowType } from '../../../common/Types';
 
 @Entry
 @Component
 struct SplashAdPage {
   private title: string = ''
-
 
   aboutToAppear(): void {
     let params = router.getParams() as Record<string, Object>;
@@ -39,6 +41,14 @@ struct SplashAdPage {
 
   @Builder
   contentBuilder() {
-
+    List() {
+      TitleComponent({
+        title: '开启底部品牌区域',
+        rowType: RowType.switch,
+        value: true
+      })
+    }
+    .width(Constant.FULL_PARENT)
+    .height(Constant.FULL_PARENT)
   }
 }

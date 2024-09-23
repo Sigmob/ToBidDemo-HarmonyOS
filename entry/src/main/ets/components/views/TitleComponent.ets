@@ -4,10 +4,13 @@ import { RowType } from '../../common/Types';
 @Component
 export struct TitleComponent {
   @Require title: ResourceStr = ''
-  @Require icon: ResourceStr | undefined = undefined;
+  icon: ResourceStr | undefined = undefined;
+  onValueChanged?: (value: Object) => void;
   fontColor: ResourceColor = $r('app.color.font_main_color_dark')
   rowType: RowType = RowType.arrow;
   value: Object | undefined = undefined;
+
+
 
   @Builder
   buildRow() {
@@ -45,6 +48,8 @@ export struct TitleComponent {
       this.arrow_right_build()
     }else if (this.rowType == RowType.text) {
       this.text_right_build()
+    }else if (this.rowType == RowType.switch) {
+      this.switch_right_build()
     }
   }
 
@@ -60,6 +65,20 @@ export struct TitleComponent {
   text_right_build() {
     if (typeof (this.value) === 'boolean' || typeof (this.value) === 'number' || typeof (this.value) === 'string') {
       Text(`${this.value}`).titleTextStyle()
+    }
+  }
+
+  @Builder
+  switch_right_build() {
+    if (typeof (this.value) === 'boolean') {
+      Toggle({ type: ToggleType.Switch, isOn: this.value })
+        .selectedColor($r('app.color.main_color'))
+        .switchPointColor('#FFFFFF')
+        .onChange((isOn: boolean) => {
+          if (this.onValueChanged) {
+            this.onValueChanged(isOn)
+          }
+        })
     }
   }
 
