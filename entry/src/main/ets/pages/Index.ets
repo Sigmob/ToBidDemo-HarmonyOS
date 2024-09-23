@@ -46,12 +46,15 @@ struct Index {
           })
         }
         .onClick(() => {
-          router.pushUrl({
-            url: data.url,
-            params: {
-              title: data.title
-            }
-          })
+          if (data.url) {
+            router.pushUrl({
+              url: data.url,
+              params: {
+                title: data.title
+              }
+            })
+          }
+
         })
         .margin({
           top: $r('app.float.padding_normal'),

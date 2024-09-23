@@ -8,7 +8,6 @@ struct BannerAdPage {
 
   private title: string = ''
 
-
   aboutToAppear(): void {
     let params = router.getParams() as Record<string, Object>;
     this.title = params['title'] as string;
