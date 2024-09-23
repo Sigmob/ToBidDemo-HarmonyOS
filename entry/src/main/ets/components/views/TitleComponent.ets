@@ -29,7 +29,6 @@ export struct TitleComponent {
       Row() {
         this.build_right()
       }
-      // .width(Constant.FULL_PARENT)
       .justifyContent(FlexAlign.End)
       .alignItems(VerticalAlign.Center)
     }
