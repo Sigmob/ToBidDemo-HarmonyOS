@@ -44,10 +44,13 @@ struct Index {
             rowType: data.rowType,
             value: data.value
           })
-        }.onClick(() => {
+        }
+        .onClick(() => {
           router.pushUrl({
             url: data.url,
-            params: data.title
+            params: {
+              title: data.title
+            }
           })
         })
         .margin({

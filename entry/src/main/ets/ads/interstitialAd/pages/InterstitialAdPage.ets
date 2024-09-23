@@ -1,20 +1,43 @@
+import { NavigationBarView } from '../../../components/navigation/NavigationBarView';
+import { NavigationView } from '../../../components/navigation/NavigationView';
+import router from '@ohos.router';
+
 @Entry
 @Component
 struct InterstitialAdPage {
-  @State message: string = 'Hello World';
+  private title: string = ''
+
+
+  aboutToAppear(): void {
+    let params = router.getParams() as Record<string, Object>;
+    this.title = params['title'] as string;
+  }
 
   build() {
-    RelativeContainer() {
-      Text(this.message)
-        .id('InterstitialAdPageHelloWorld')
-        .fontSize(50)
-        .fontWeight(FontWeight.Bold)
-        .alignRules({
-          center: { anchor: '__container__', align: VerticalAlign.Center },
-          middle: { anchor: '__container__', align: HorizontalAlign.Center }
-        })
-    }
-    .height('100%')
-    .width('100%')
+    Stack() {
+      NavigationView({
+        navigationBuilder: () => {
+          this.navigationBuilder()
+        },
+        contentBuilder: () => {
+          this.contentBuilder()
+        }
+      })
+        .width('100%').height('100%')
+    }.width('100%').height('100%')
+  }
+
+  @Builder
+  navigationBuilder() {
+    NavigationBarView({
+      title: this.title,
+      showBack: false,
+      naviBackgroundColor: $r('app.color.main_color'),
+    })
+  }
+
+  @Builder
+  contentBuilder() {
+
   }
 }
