@@ -25,4 +25,8 @@ export default class Constant {
    * 线条高度
    */
   static readonly LINE_HEIGHT_NORMAL = 1;
+
+
+  static readonly AD_SLOT_SPLASH = "2341452345";
+
 }

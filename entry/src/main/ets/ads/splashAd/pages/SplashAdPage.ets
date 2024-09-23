@@ -67,7 +67,10 @@ struct SplashAdPage {
         TitleComponent({
           title: '开启底部品牌区域',
           rowType: RowType.switch,
-          value: true
+          value: true,
+          onValueChanged: (data) => {
+            this.viewModel.hasLogo = data as boolean
+          }
         })
       }
       .margin({
