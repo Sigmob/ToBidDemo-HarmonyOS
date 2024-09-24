@@ -1,6 +1,9 @@
 import { AbilityConstant, UIAbility, Want } from '@kit.AbilityKit';
 import { hilog } from '@kit.PerformanceAnalysisKit';
 import { window } from '@kit.ArkUI';
+import { ToBidSDK } from '../ads/AdInit/Adinit';
+import { GlobalContext } from '../common/GlobalContext';
+import Constant from '../common/Constant';
 
 export default class EntryAbility extends UIAbility {
   onCreate(want: Want, launchParam: AbilityConstant.LaunchParam): void {
@@ -14,6 +17,8 @@ export default class EntryAbility extends UIAbility {
   onWindowStageCreate(windowStage: window.WindowStage): void {
     // Main window is created, set main page for this ability
     hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onWindowStageCreate');
+    GlobalContext.getContext().setObject(Constant.KEY_WINDOW_STAGE, windowStage);
+    GlobalContext.getContext().setObject(Constant.KEY_CONTEXT, this.context);
 
     windowStage.loadContent('pages/Index', (err) => {
       if (err.code) {
@@ -21,6 +26,7 @@ export default class EntryAbility extends UIAbility {
         return;
       }
       hilog.info(0x0000, 'testTag', 'Succeeded in loading the content.');
+      ToBidSDK.onWindowStageCreate(windowStage, this.context);
     });
   }
 

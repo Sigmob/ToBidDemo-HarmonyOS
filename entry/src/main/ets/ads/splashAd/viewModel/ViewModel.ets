@@ -1,19 +1,20 @@
 import {
-  TBAdInfo,
-  TBAdLoadListener,
-  tbnode,
-  TBParameter,
-  TBSplashAd,
-  TBSplashAdInteractionListener,
-  TBType
+    TBAdInfo,
+    TBAdLoadListener,
+    tbnode,
+    TBParameter,
+    TBSplashAd,
+    TBSplashAdInteractionListener,
+    TBType
 } from '@tobid/adsdk';
 import Constant from '../../../common/Constant';
 import DeviceInfo from '../../../common/DeviceInfo';
-import { ListenerModel } from './Model'
+import { ListenerModel } from './Model';
 import { BusinessError } from '@ohos.base';
 import { SplashBottomView } from '../views/builder';
 import { Logger } from 'wind_common';
-import { promptAction } from '@kit.ArkUI';
+import { TestPosId } from '../../../common/TestPosId';
+import { Toast } from '../../../common/Toast';
 
 export class ViewModel implements TBAdLoadListener {
   readonly model: ListenerModel;
@@ -37,7 +38,7 @@ export class ViewModel implements TBAdLoadListener {
       }
       //开屏广告需要设置adWidth&adHeight，否则可能影响展示效果
       let request: TBType.AdRequest = {
-        placementId: Constant.AD_SLOT_SPLASH,
+        placementId: TestPosId.POS_ID_SPLASH,
         userId: 'Codi', //userId方便后续排查用户问题
         adWidth: DeviceInfo.cwidth,
         adHeight: adHeight
@@ -60,9 +61,7 @@ export class ViewModel implements TBAdLoadListener {
   onAdDidLoad() {
     this.model.loadState = '加载成功...'
     Logger.debug(Constant.TAG, 'onAdDidLoad')
-    promptAction.showToast({
-      message: 'onAdDidLoad'
-    })
+    Toast.show('onAdDidLoad')
   }
 
   /**
@@ -73,9 +72,7 @@ export class ViewModel implements TBAdLoadListener {
     this.model.loadState = `加载失败[${error.code}]...`
     this.model.message = JSON.stringify(error);
     Logger.error(Constant.TAG, `onAdLoadError[${JSON.stringify(error)}]`)
-    promptAction.showToast({
-      message: `${JSON.stringify(error)}`
-    })
+    Toast.show(`${JSON.stringify(error)}`)
   };
 }
 
@@ -88,44 +85,32 @@ class SplashAdInteractionListener implements TBSplashAdInteractionListener {
 
   onAdShow(adInfo: TBAdInfo): void {
     Logger.debug(Constant.TAG, `onAdShow[adInfo: ${JSON.stringify(adInfo)}]`)
-    promptAction.showToast({
-      message: `onAdShow - ${adInfo.placementId}`
-    })
+    Toast.show(`onAdShow - ${adInfo.placementId}`)
   }
 
   onAdShowError(error: BusinessError<void>): void {
     Logger.debug(Constant.TAG, `onAdShowError[${JSON.stringify(error)}]`)
-    promptAction.showToast({
-      message: `onAdShowError - ${JSON.stringify(error)}`
-    })
+    Toast.show(`onAdShowError - ${JSON.stringify(error)}`)
   }
 
   onAdClick(adInfo: TBAdInfo): void {
     Logger.debug(Constant.TAG, `onAdClick[${adInfo.placementId}]`)
-    promptAction.showToast({
-      message: `onAdClick - ${adInfo.placementId}`
-    })
+    Toast.show(`onAdClick - ${adInfo.placementId}`)
   }
 
   onAdClose(adInfo: TBAdInfo): void {
     Logger.debug(Constant.TAG, `onAdClose[${adInfo.placementId}]`)
-    promptAction.showToast({
-      message: `onAdClose - ${adInfo.placementId}`
-    })
+    Toast.show(`onAdClose - ${adInfo.placementId}`)
   }
 
   onSkipped(adInfo: TBAdInfo): void {
     Logger.debug(Constant.TAG, `onSkipped[${adInfo.placementId}]`)
-    promptAction.showToast({
-      message: `onSkipped - ${adInfo.placementId}`
-    })
+    Toast.show(`onSkipped - ${adInfo.placementId}`)
   }
 
   onCounterZero(adInfo: TBAdInfo): void {
     Logger.debug(Constant.TAG, `onCounterZero[${adInfo.placementId}]`)
-    promptAction.showToast({
-      message: `onCounterZero - ${adInfo.placementId}`
-    })
+    Toast.show(`onCounterZero - ${adInfo.placementId}`)
   }
 
   customBottomViewWrapBuilder(parameter: TBParameter, adInfo: TBAdInfo): tbnode.Data | undefined {

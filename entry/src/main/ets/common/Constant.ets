@@ -18,15 +18,14 @@ export default class Constant {
    */
   static readonly CELL_HEIGHT_NORMAL = 44;
   /**
-   * 下拉选择框行高
+   * 窗口管理器
    */
-  static readonly SELECTOR_CELL_HEIGHT = 35;
+  static readonly KEY_WINDOW_STAGE = 'KEY_WINDOW_STAGE'
   /**
-   * 线条高度
+   * 上下文
    */
-  static readonly LINE_HEIGHT_NORMAL = 1;
+  static readonly KEY_CONTEXT = 'KEY_CONTEXT'
 
 
-  static readonly AD_SLOT_SPLASH = "2341452345";
 
 }
