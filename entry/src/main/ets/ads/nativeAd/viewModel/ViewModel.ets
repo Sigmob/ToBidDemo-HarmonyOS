@@ -25,12 +25,14 @@ export class ViewModel implements TBNativeAdLoaderListener {
     this.model = new ListenerModel();
   }
 
-  loadAdData() {
+  loadAdData(adWidth: number, adHeight: number) {
     this.model.message = ''
     this.model.loadState = '加载中...'
     if (!this.adLoader) {
       let request: TBType.AdRequest = {
         placementId: TestPosId.POS_ID_SPLASH,
+        adWidth: adWidth,
+        adHeight: adHeight, // adHeight=0时，模版自适应高度
         userId: 'Codi', //userId方便后续排查用户问题
         adCount: 1, // 一次加载广告的数量，1～3条，默认为1
       }

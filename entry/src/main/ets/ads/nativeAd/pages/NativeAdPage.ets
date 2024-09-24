@@ -6,11 +6,15 @@ import { TitleComponent } from '../../../components/views/TitleComponent';
 import { ViewModel } from '../viewModel/ViewModel';
 import Constant from '../../../common/Constant';
 import { NativeAdView } from '../views/NativeAdView';
+import { PosSlider } from '../../../components/views/PosSlider';
+import DeviceInfo from '../../../common/DeviceInfo';
 
 @Entry
 @Component
 struct NativeAdPage {
   @Provide('NavPathStack') pageStack: NavPathStack = new NavPathStack();
+  @State adWidth: number = DeviceInfo.cwidth;
+  @State adHeight: number = 0;
   private title: string = ''
   private viewModel = new ViewModel();
 
@@ -69,7 +73,7 @@ struct NativeAdPage {
           rowType: RowType.none,
         })
       }
-      .onClick(() => this.viewModel.loadAdData())
+      .onClick(() => this.viewModel.loadAdData(this.adWidth, this.adHeight))
       .margin({
         top: $r('app.float.padding_normal'),
       })
@@ -82,6 +86,13 @@ struct NativeAdPage {
         })
       }
       .onClick(() => this.playAd())
+
+      ListItem() {
+        PosSlider({
+          adWidth: this.adWidth,
+          adHeight: this.adHeight
+        })
+      }
 
       ListItem() {
         Text(`广告加载状态：${this.viewModel.model.loadState}`)

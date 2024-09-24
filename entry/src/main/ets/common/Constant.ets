@@ -3,7 +3,6 @@ export default class Constant {
    * log tag
    */
   static readonly TAG = '[entry]';
-
   static readonly _CONTAINER_ = '__container__';
   /**
    * 宽或者高100%
@@ -25,7 +24,4 @@ export default class Constant {
    * 上下文
    */
   static readonly KEY_CONTEXT = 'KEY_CONTEXT'
-
-
-
 }
