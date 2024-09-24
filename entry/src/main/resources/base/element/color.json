@@ -31,6 +31,10 @@
     {
       "name": "font_gray_color",
       "value": "#8a8a8a"
+    },
+    {
+      "name": "gray",
+      "value": "#328a8a8a"
     }
   ]
 }
