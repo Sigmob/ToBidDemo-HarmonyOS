@@ -5,6 +5,7 @@
     "ads/bannerAd/pages/BannerAdPage",
     "ads/interstitialAd/pages/InterstitialAdPage",
     "ads/nativeAd/pages/NativeAdPage",
-    "ads/rewardVideoAd/pages/RewardVideoAdPage"
+    "ads/rewardVideoAd/pages/RewardVideoAdPage",
+    "ads/nativeAd/pages/NativeAdListPage"
   ]
 }

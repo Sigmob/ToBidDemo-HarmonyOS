@@ -12,9 +12,8 @@ import DeviceInfo from '../../../common/DeviceInfo';
 @Entry
 @Component
 struct NativeAdPage {
-  @Provide('NavPathStack') pageStack: NavPathStack = new NavPathStack();
   @State adWidth: number = DeviceInfo.cwidth;
-  @State adHeight: number = 0;
+  @State adHeight?: number = undefined;
   private title: string = ''
   private viewModel = new ViewModel();
 
@@ -24,18 +23,22 @@ struct NativeAdPage {
   }
 
   playAd() {
-    this.pageStack.pushPathByName('TBNativeAdComponent', this.viewModel, true)
+    this.viewModel.pageStack.pushPathByName('TBNativeAdComponent', this.viewModel, true)
   }
 
   @Builder
   PagesMap(name: string) {
     if (name == 'TBNativeAdComponent') {
-      NativeAdView()
+      if (this.viewModel.ads.length > 0) {
+        NativeAdView({
+          nativeAd: this.viewModel.ads[0]
+        })
+      }
     }
   }
 
   build() {
-    Navigation(this.pageStack) {
+    Navigation(this.viewModel.pageStack) {
       NavigationView({
         navigationBuilder: () => {
           this.navigationBuilder()
@@ -86,6 +89,18 @@ struct NativeAdPage {
         })
       }
       .onClick(() => this.playAd())
+
+      ListItem() {
+        TitleComponent({
+          title: '原生广告ListView',
+          icon: $r('app.media.icon_ad'),
+          rowType: RowType.arrow,
+        })
+      }
+      .onClick(() => router.pushUrl({ url: 'ads/nativeAd/pages/NativeAdListPage' }))
+      .margin({
+        top: $r('app.float.padding_normal'),
+      })
 
       ListItem() {
         PosSlider({

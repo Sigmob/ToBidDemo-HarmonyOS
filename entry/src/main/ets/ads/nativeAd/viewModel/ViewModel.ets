@@ -17,6 +17,7 @@ import { TestPosId } from '../../../common/TestPosId';
 import { Toast } from '../../../common/Toast';
 
 export class ViewModel implements TBNativeAdLoaderListener {
+  readonly pageStack: NavPathStack = new NavPathStack();
   readonly model: ListenerModel;
   adLoader?: TBNativeAdLoader;
   ads: TBNativeAd[] = [];
@@ -25,7 +26,7 @@ export class ViewModel implements TBNativeAdLoaderListener {
     this.model = new ListenerModel();
   }
 
-  loadAdData(adWidth: number, adHeight: number) {
+  loadAdData(adWidth: number, adHeight?: number) {
     this.model.message = ''
     this.model.loadState = '加载中...'
     if (!this.adLoader) {
@@ -60,7 +61,7 @@ export class ViewModel implements TBNativeAdLoaderListener {
       let nativeAd = new WeakRef(data);
       data.videoListener = new INativeAdVideoListener(nativeAd);
       data.interactListener = new INativeAdInteractListener(nativeAd);
-      data.dislikeListener = new ISGDislikeListener();
+      data.dislikeListener = new ISGDislikeListener(new WeakRef(this));
     });
   }
 
@@ -133,6 +134,11 @@ export class INativeAdInteractListener implements TBNativeAdInteractListener {
 }
 
 export class ISGDislikeListener implements TBDislikeListener {
+  readonly viewModel: WeakRef<ViewModel>;
+  constructor(viewModel: WeakRef<ViewModel>) {
+    this.viewModel = viewModel;
+  }
+
   onShow(): void {
     Logger.debug(Constant.TAG, 'dislike.show')
     Toast.show('dislike.show')
@@ -141,6 +147,9 @@ export class ISGDislikeListener implements TBDislikeListener {
   onSelected(position: number, value: string, enforce: boolean): void {
     Logger.debug(Constant.TAG, `dislike.selected: ${position} - ${value} - ${enforce}`)
     Toast.show(`dislike.selected: ${position} - ${value} - ${enforce}`)
+    // 需要在dislike回调中处理广告关闭，否则广告点击关闭后无反应
+    let viewModel = this.viewModel.deref()
+    viewModel?.pageStack?.pop(true);
   }
 
   onCancel(): void {

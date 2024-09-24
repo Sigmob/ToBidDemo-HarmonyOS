@@ -1,24 +1,10 @@
 import { TBNativeAd, TBType } from '@tobid/adsdk';
-import { ViewModel } from '../viewModel/ViewModel';
 import { CustomNativeAdView } from './CustomNativeAdView';
 import { CustomNativeDrawAdView } from './CustomNativeDrawAdView';
 
 @Component
 export struct NativeAdView {
-  @Consume('NavPathStack') pageStack: NavPathStack;
-  nativeAd?: TBNativeAd
-
-  aboutToAppear(): void {
-    let params = this.pageStack.getParamByName('TBNativeAdComponent') as ViewModel[]
-    let viewModel = params[0];
-    let ads = viewModel.ads;
-    if (ads.length > 0) {
-      this.nativeAd = ads[0];
-    }
-  }
-
-  aboutToDisappear(): void {
-  }
+  @Require nativeAd?: TBNativeAd
 
   build() {
     NavDestination() {
