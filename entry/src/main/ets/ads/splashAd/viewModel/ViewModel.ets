@@ -27,6 +27,7 @@ export class ViewModel implements TBAdLoadListener {
 
 
   loadAdData() {
+    this.model.message = ''
     this.model.loadState = '加载中...'
     if (this.splashAd) {
       this.splashAd.loadAdData();
