@@ -1,8 +1,12 @@
 export class TestPosId {
   /**
-   * 应用ID
+   * 平台分配 应用ID
    */
   static readonly APP_ID = '1262';
+  /**
+   * 平台分配 应用key
+   */
+  static readonly APP_KEY = 'xxx';
   /**
    * 开屏测试ID
    */
