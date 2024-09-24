@@ -31,7 +31,7 @@ export class ViewModel implements TBNativeAdLoaderListener {
     this.model.loadState = '加载中...'
     if (!this.adLoader) {
       let request: TBType.AdRequest = {
-        placementId: TestPosId.POS_ID_SPLASH,
+        placementId: TestPosId.POS_ID_NATIVE,
         adWidth: adWidth,
         adHeight: adHeight, // adHeight=0时，模版自适应高度
         userId: 'Codi', //userId方便后续排查用户问题
@@ -133,7 +133,7 @@ export class INativeAdInteractListener implements TBNativeAdInteractListener {
   }
 }
 
-export class ISGDislikeListener implements TBDislikeListener {
+class ISGDislikeListener implements TBDislikeListener {
   readonly viewModel: WeakRef<ViewModel>;
   constructor(viewModel: WeakRef<ViewModel>) {
     this.viewModel = viewModel;

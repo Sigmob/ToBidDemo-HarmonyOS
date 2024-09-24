@@ -62,11 +62,10 @@ export default class StringUtil {
    * @returns
    */
   static stringToUint8Array(str: string): Uint8Array {
-    let arr: number[] = [];
-    for (let i = 0, j = str.length; i < j; ++i) {
-      arr.push(str.charCodeAt(i));
-    }
-    return new Uint8Array(arr);
+    let textEncoder = new util.TextEncoder('utf-8');
+    let result = textEncoder.encodeInto(str);
+    return result;
+
   }
 
   /**
@@ -88,10 +87,9 @@ export default class StringUtil {
    * @returns
    */
   static uint8ArrayToString(array: Uint8Array): string {
-    let arrayString = '';
-    for (let i = 0; i < array.length; i++) {
-      arrayString += String.fromCharCode(array[i]);
-    }
-    return arrayString;
+    let textDecoder = util.TextDecoder.create('utf-8', { ignoreBOM: true })
+    let result = textDecoder.decodeToString(array, { stream: true });
+    return result;
+
   }
 }
