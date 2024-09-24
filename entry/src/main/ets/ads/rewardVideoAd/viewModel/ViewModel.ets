@@ -1,25 +1,21 @@
 import {
-    TBAdInfo,
-    TBAdLoadListener,
-    tbnode,
-    TBParameter,
-    TBSplashAd,
-    TBSplashAdInteractionListener,
-    TBType
+  TBAdInfo,
+  TBAdLoadListener,
+  TBReward,
+  TBRewardAdInteractionListener,
+  TBRewardVideoAd,
+  TBType
 } from '@tobid/adsdk';
 import Constant from '../../../common/Constant';
-import DeviceInfo from '../../../common/DeviceInfo';
 import { ListenerModel } from '../../../models/Model';
 import { BusinessError } from '@ohos.base';
-import { SplashBottomView } from '../views/builder';
 import { Logger } from 'wind_common';
 import { TestPosId } from '../../../common/TestPosId';
 import { Toast } from '../../../common/Toast';
 
 export class ViewModel implements TBAdLoadListener {
   readonly model: ListenerModel;
-  hasLogo: boolean = true;
-  splashAd?: TBSplashAd;
+  rewardVideoAd?: TBRewardVideoAd;
 
   constructor() {
     this.model = new ListenerModel();
@@ -29,29 +25,26 @@ export class ViewModel implements TBAdLoadListener {
   loadAdData() {
     this.model.message = ''
     this.model.loadState = '加载中...'
-    if (!this.splashAd) {
-      let adHeight = DeviceInfo.cheight;
-      if (this.hasLogo) {
-        // 100为demo自定义品牌区的高度,开发者可根据实际情况自行处理
-        adHeight = DeviceInfo.cheight - 100;
-      }
-      //开屏广告需要设置adWidth&adHeight，否则可能影响展示效果
+    if (!this.rewardVideoAd) {
       let request: TBType.AdRequest = {
         placementId: TestPosId.POS_ID_SPLASH,
         userId: 'Codi', //userId方便后续排查用户问题
-        adWidth: DeviceInfo.cwidth,
-        adHeight: adHeight
+        options: {
+          // options参数在开启服务端激励回调时会透传给开发者的callback服务
+          'key_1': 'xxx1',
+          'key_2': 'xxx2'
+        }
       }
-      let splashAd = new TBSplashAd(request)
-      splashAd.adLoadListener = this;
-      splashAd.adInteractionListener = new SplashAdInteractionListener(new WeakRef(this))
-      this.splashAd = splashAd;
+      let rewardVideoAd = new TBRewardVideoAd(request)
+      rewardVideoAd.adLoadListener = this;
+      rewardVideoAd.adInteractionListener = new RewardAdInteractionListener();
+      this.rewardVideoAd = rewardVideoAd;
     }
-    this.splashAd.loadAdData();
+    this.rewardVideoAd.loadAdData();
   }
 
   playAd() {
-    this.splashAd?.showAd()
+    this.rewardVideoAd?.showAd()
   }
 
   /**
@@ -75,20 +68,14 @@ export class ViewModel implements TBAdLoadListener {
   };
 }
 
-class SplashAdInteractionListener implements TBSplashAdInteractionListener {
-  private readonly viewModel: WeakRef<ViewModel>;
-
-  constructor(viewModel: WeakRef<ViewModel>) {
-    this.viewModel = viewModel;
-  }
-
+class RewardAdInteractionListener implements TBRewardAdInteractionListener {
   onAdShow(adInfo: TBAdInfo): void {
     Logger.debug(Constant.TAG, `onAdShow[adInfo: ${JSON.stringify(adInfo)}]`)
     Toast.show(`onAdShow - ${adInfo.placementId}`)
   }
 
   onAdShowError(error: BusinessError<void>): void {
-    Logger.debug(Constant.TAG, `onAdShowError[${JSON.stringify(error)}]`)
+    Logger.debug(Constant.TAG, `onAdShow[${JSON.stringify(error)}]`)
     Toast.show(`onAdShowError - ${JSON.stringify(error)}`)
   }
 
@@ -102,25 +89,24 @@ class SplashAdInteractionListener implements TBSplashAdInteractionListener {
     Toast.show(`onAdClose - ${adInfo.placementId}`)
   }
 
+  onRewardArrived(adInfo: TBAdInfo, reward: TBReward): void {
+    Logger.debug(Constant.TAG, `onRewardArrived[${adInfo.placementId}]`)
+    Toast.show(`onRewardArrived: [${reward.isRewardValid}] - ${adInfo.placementId}`)
+  }
+
+  onVideoPlayComplete(adInfo: TBAdInfo): void {
+    Logger.debug(Constant.TAG, `onVideoComplete[${adInfo.placementId}]`)
+    Toast.show(`onVideoComplete - ${adInfo.placementId}`)
+  }
+
   onSkipped(adInfo: TBAdInfo): void {
     Logger.debug(Constant.TAG, `onSkipped[${adInfo.placementId}]`)
     Toast.show(`onSkipped - ${adInfo.placementId}`)
   }
 
-  onCounterZero(adInfo: TBAdInfo): void {
-    Logger.debug(Constant.TAG, `onCounterZero[${adInfo.placementId}]`)
-    Toast.show(`onCounterZero - ${adInfo.placementId}`)
-  }
-
-  customBottomViewWrapBuilder(parameter: TBParameter, adInfo: TBAdInfo): tbnode.Data | undefined {
-    if (this.viewModel.deref()?.hasLogo !== true) {
-      return undefined;
-    }
-    let builder: WrappedBuilder<[tbnode.Params]> = wrapBuilder(SplashBottomView);
-    return {
-      wrap: builder,
-      args: {} as tbnode.Params
-    };
+  onVideoPlayError(err: BusinessError<void>, adInfo: TBAdInfo): void {
+    Logger.debug(Constant.TAG, `onVideoError[${adInfo.placementId}] - ${JSON.stringify(err)}`)
+    Toast.show(`onVideoError - ${JSON.stringify(err)}`)
   }
 }
 

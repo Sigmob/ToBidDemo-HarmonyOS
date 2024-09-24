@@ -2,7 +2,7 @@ export default class Constant {
   /**
    * log tag
    */
-  static readonly TAG = '[Codi]';
+  static readonly TAG = '[entry]';
 
   static readonly _CONTAINER_ = '__container__';
   /**
