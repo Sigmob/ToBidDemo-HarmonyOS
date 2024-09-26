@@ -7,7 +7,7 @@
   "license": "",
   "dependencies": {
     "@tobid/adsdk": "file:../libs/tobid-sdk-ohos/Core/tobidadsdk-1.2.0.har",
-    "wind_common": "file:../libs/tobid-sdk-ohos/Core/wind_common-0.3.24.har",
+    "wind_common": "file:../libs/tobid-sdk-ohos/Core/wind_common-0.4.1.har",
     "@tobid/kuaishou_adapter": "file:../libs/tobid-sdk-ohos/AdNetworks/kuaishou/tobid_kuaishou_adapter-1.2.0.har",
     "@tobid/huawei_adapter": "file:../libs/tobid-sdk-ohos/AdNetworks/huawei/tobid_huawei_adapter-1.2.0.har",
     "@tobid/gromore_adapter": "file:../libs/tobid-sdk-ohos/AdNetworks/gromore/tobid_gromore_adapter-1.2.0.har",
