@@ -17,6 +17,14 @@ export default class Constant {
    */
   static readonly CELL_HEIGHT_NORMAL = 44;
   /**
+   * 下拉选择框行高
+   */
+  static readonly SELECTOR_CELL_HEIGHT = 35;
+  /**
+   * 线条高度
+   */
+  static readonly LINE_HEIGHT_NORMAL = 1;
+  /**
    * 窗口管理器
    */
   static readonly KEY_WINDOW_STAGE = 'KEY_WINDOW_STAGE'

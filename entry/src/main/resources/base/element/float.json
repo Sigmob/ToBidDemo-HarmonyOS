@@ -13,8 +13,20 @@
       "value": "16fp"
     },
     {
+      "name": "mainPage_tabTitles_margin",
+      "value": "12vp"
+    },
+    {
+      "name": "mainPage_tabTitles_padding",
+      "value": "12vp"
+    },
+    {
       "name": "padding_normal",
       "value": "10vp"
+    },
+    {
+      "name": "padding_small",
+      "value": "5vp"
     },
     {
       "name": "arrow_jump_width",
