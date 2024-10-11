@@ -65,7 +65,7 @@ export struct ZPRow {
   fontColor: ResourceColor = $r('app.color.font_main_color_dark')
   @State showSelector: boolean = false // 是否展开下拉菜单
   modesDatas: ModeType[] = []
-  @State currentMode: ModeType = {id: -1, name: 'none'};
+  @State currentMode: ModeType = {id: -1, name: 'none', value: 'none'};
   private onlyRight:boolean = true;
   private rid: string = '';
   private dialog?: CustomDialogController
@@ -108,16 +108,11 @@ export struct ZPRow {
               .fontWeight(FontWeight.Medium)
               .maxLines(1)
           }
-          .constraintSize({
-            maxWidth: '50%'
-          })
+
         }
         Row() {
           this.right_build()
         }
-        .constraintSize({
-          maxWidth: this.onlyRight ? '60%' : '100%'
-        })
         .justifyContent(this.onlyRight ? FlexAlign.End : FlexAlign.Start)
         .alignItems(VerticalAlign.Center)
       }
@@ -131,7 +126,6 @@ export struct ZPRow {
         left: $r('app.float.padding_normal'),
         right: $r('app.float.padding_normal')
       })
-
       Divider()
     }
     .onClick(this.config.getOnClick())
@@ -268,7 +262,6 @@ export struct ZPRow {
     .borderColor($r('app.color.font_gray_color'))
     .backgroundColor(Color.Transparent)
     .height(Constant.SELECTOR_CELL_HEIGHT)
-    .width('50%')
     .margin($r('app.float.padding_small'))
   }
 }

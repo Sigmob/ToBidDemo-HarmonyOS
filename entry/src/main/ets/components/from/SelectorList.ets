@@ -1,10 +1,9 @@
-// 数据类型定义
-import Constant from '../../common/constants/Constant';
+import Constant from "../../common/Constant";
 
 export interface ModeType {
   id: number;
   name: string;
-  value?: string;
+  value: string;
 }
 
 @Component
@@ -17,7 +16,7 @@ struct ModeItem {
     Stack({ alignContent: Alignment.Center }) {
       Flex({ direction: FlexDirection.Column, justifyContent: FlexAlign.Center, alignItems: ItemAlign.Start }) {
         Text(value).fontSize($r('app.float.normal_text_size')).fontColor(fontColor).align(Alignment.Start)
-          .padding({ left: $r('app.float.mainPage_padding') })
+          .padding({ left: $r('app.float.padding_normal') })
       }
       .width(Constant.FULL_PARENT)
 

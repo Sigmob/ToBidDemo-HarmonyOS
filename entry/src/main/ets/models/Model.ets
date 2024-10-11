@@ -7,3 +7,10 @@ export class ListenerModel {
 
   @Trace message: string = '';
 }
+
+
+export interface SlotId {
+  adSlotId: string; // 聚合广告位ID
+  adType: number; // 广告类型
+  name: string; // 名称
+}

@@ -22,12 +22,12 @@ export class ViewModel implements TBAdLoadListener {
   }
 
 
-  loadAdData() {
+  loadAdData(placementId: string) {
     this.model.message = ''
     this.model.loadState = '加载中...'
     if (!this.rewardVideoAd) {
       let request: TBType.AdRequest = {
-        placementId: TestPosId.POS_ID_SPLASH,
+        placementId: placementId,
         userId: 'Codi', //userId方便后续排查用户问题
         options: {
           // options参数在开启服务端激励回调时会透传给开发者的callback服务

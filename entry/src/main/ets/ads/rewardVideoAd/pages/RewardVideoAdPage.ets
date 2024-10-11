@@ -5,16 +5,26 @@ import Constant from '../../../common/Constant';
 import { TitleComponent } from '../../../components/views/TitleComponent';
 import { RowType } from '../../../common/Types';
 import { ViewModel } from '../viewModel/ViewModel';
+import { ZAdView } from '../../../components/views/AdView';
+import { SlotId } from '../../../models/Model';
 
 @Entry
 @Component
 struct RewardVideoAdPage {
+  @State slotIds: SlotId[] = [];
+  @State curSlotId: string = '';
   private title: string = ''
   private viewModel = new ViewModel();
 
   aboutToAppear(): void {
     let params = router.getParams() as Record<string, Object>;
     this.title = params['title'] as string;
+
+    this.slotIds.push({
+      adSlotId: '3852591891718495',
+      adType: 1,
+      name: '快手广告_新插屏广告_全屏_模版渲染_横版_视频'
+    })
   }
 
   build() {
@@ -45,24 +55,16 @@ struct RewardVideoAdPage {
   contentBuilder() {
     List() {
       ListItem() {
-        TitleComponent({
-          title: '加载广告',
-          icon: $r('app.media.icon_load'),
-          rowType: RowType.none,
+        ZAdView({
+          slotIds: $slotIds,
+          curSlotId: $curSlotId,
+          uses2s: true,
+          onAdLoad: (): void => this.viewModel.loadAdData(this.curSlotId),
+          onAdPlay: (): void => this.viewModel.playAd(),
         })
+          .backgroundColor($r('app.color.mainPage_backgroundColor'))
       }
-      .onClick(() => this.viewModel.loadAdData())
-      .margin({
-        top: $r('app.float.padding_normal'),
-      })
-      ListItem() {
-        TitleComponent({
-          title: '播放广告',
-          icon: $r('app.media.icon_play'),
-          rowType: RowType.none,
-        })
-      }
-      .onClick(() => this.viewModel.playAd())
+
 
       ListItem() {
         Text(`广告加载状态：${this.viewModel.model.loadState}`)
