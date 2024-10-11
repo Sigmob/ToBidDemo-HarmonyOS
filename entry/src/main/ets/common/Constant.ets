@@ -4,6 +4,29 @@ export default class Constant {
    */
   static readonly TAG = '[entry]';
   static readonly _CONTAINER_ = '__container__';
+
+  /**
+   * 开屏测试ID
+   */
+  static readonly POS_ID_SPLASH = 'splash_placement_ids.json';
+  /**
+   * 激励视频测试ID
+   */
+  static readonly POS_ID_REWARD = 'reward_video_placement_ids.json';
+  /**
+   * 插屏测试ID
+   */
+  static readonly POS_ID_INTERSTITIAL = 'interstitial_placement_ids.json'
+  /**
+   * 原生广告测试ID
+   */
+  static readonly POS_ID_NATIVE = 'native_placement_ids.json'
+  /**
+   * 横幅广告测试ID
+   */
+  static readonly POS_ID_BANNER = 'banner_placement_ids.json'
+
+
   /**
    * 宽或者高100%
    */

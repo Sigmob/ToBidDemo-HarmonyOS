@@ -2,15 +2,12 @@ import {
     TBAdInfo,
     TBAdLoadListener,
     TBInterstitialAd,
-  TBInterstitialAdInteractionListener,
-  TBReward,
-    TBRewardAdInteractionListener, TBType
+    TBInterstitialAdInteractionListener, TBType
 } from '@tobid/adsdk';
 import Constant from '../../../common/Constant';
 import { ListenerModel } from '../../../models/Model';
 import { BusinessError } from '@ohos.base';
 import { Logger } from 'wind_common';
-import { TestPosId } from '../../../common/TestPosId';
 import { Toast } from '../../../common/Toast';
 
 export class ViewModel implements TBAdLoadListener {
@@ -22,12 +19,12 @@ export class ViewModel implements TBAdLoadListener {
   }
 
 
-  loadAdData() {
+  loadAdData(placementId: string) {
     this.model.message = ''
     this.model.loadState = '加载中...'
     if (!this.interstitialAd) {
       let request: TBType.AdRequest = {
-        placementId: TestPosId.POS_ID_SPLASH,
+        placementId: placementId,
         userId: 'Codi', //userId方便后续排查用户问题
       }
       let interstitialAd = new TBInterstitialAd(request)

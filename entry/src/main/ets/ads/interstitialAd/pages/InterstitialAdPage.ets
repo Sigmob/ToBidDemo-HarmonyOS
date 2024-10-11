@@ -2,19 +2,24 @@ import { NavigationBarView } from '../../../components/navigation/NavigationBarV
 import { NavigationView } from '../../../components/navigation/NavigationView';
 import router from '@ohos.router';
 import Constant from '../../../common/Constant';
-import { TitleComponent } from '../../../components/views/TitleComponent';
-import { RowType } from '../../../common/Types';
 import { ViewModel } from '../viewModel/ViewModel';
+import { SlotId } from '../../../models/Model';
+import { DatasUtil } from '../../../utls/DatasUtil';
+import { ZAdView } from '../../../components/views/AdView';
 
 @Entry
 @Component
 struct InterstitialAdPage {
+  @State slotIds: SlotId[] = [];
+  @State curSlotId: string = '';
   private title: string = ''
   private viewModel = new ViewModel();
 
   aboutToAppear(): void {
     let params = router.getParams() as Record<string, Object>;
     this.title = params['title'] as string;
+    let slotIds = DatasUtil.get_placement_ids(Constant.POS_ID_INTERSTITIAL);
+    this.slotIds.push(...slotIds);
   }
 
   build() {
@@ -45,25 +50,15 @@ struct InterstitialAdPage {
   contentBuilder() {
     List() {
       ListItem() {
-        TitleComponent({
-          title: '加载广告',
-          icon: $r('app.media.icon_load'),
-          rowType: RowType.none,
+        ZAdView({
+          slotIds: $slotIds,
+          curSlotId: $curSlotId,
+          uses2s: true,
+          onAdLoad: (): void => this.viewModel.loadAdData(this.curSlotId),
+          onAdPlay: (): void => this.viewModel.playAd(),
         })
+          .backgroundColor($r('app.color.mainPage_backgroundColor'))
       }
-      .onClick(() => this.viewModel.loadAdData())
-      .margin({
-        top: $r('app.float.padding_normal'),
-      })
-      ListItem() {
-        TitleComponent({
-          title: '播放广告',
-          icon: $r('app.media.icon_play'),
-          rowType: RowType.none,
-        })
-      }
-      .onClick(() => this.viewModel.playAd())
-
       ListItem() {
         Text(`广告加载状态：${this.viewModel.model.loadState}`)
           .textAlign(TextAlign.Center)

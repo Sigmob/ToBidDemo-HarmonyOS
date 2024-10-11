@@ -1,8 +1,17 @@
 import { NativeDataModel } from '../models/NativeDataMode';
 import StringUtil from './StringUtil';
 import { GlobalContext } from '../common/GlobalContext';
+import { SlotId } from '../models/Model';
 
 export class DatasUtil {
+
+  static get_placement_ids(name: string): SlotId[] {
+    let ctx = GlobalContext.getContext().context();
+    let dataBuffer = ctx.resourceManager.getRawFileContentSync(name);
+    let context = StringUtil.uint8ArrayToString(dataBuffer);
+    let datas = JSON.parse(context) as SlotId[];
+    return datas;
+  }
 
   static fakeDatas(): NativeDataModel[] {
     let ctx = GlobalContext.getContext().context();

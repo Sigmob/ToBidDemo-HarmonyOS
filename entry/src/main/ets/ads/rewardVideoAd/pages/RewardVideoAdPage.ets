@@ -2,11 +2,10 @@ import { NavigationBarView } from '../../../components/navigation/NavigationBarV
 import { NavigationView } from '../../../components/navigation/NavigationView';
 import router from '@ohos.router';
 import Constant from '../../../common/Constant';
-import { TitleComponent } from '../../../components/views/TitleComponent';
-import { RowType } from '../../../common/Types';
 import { ViewModel } from '../viewModel/ViewModel';
 import { ZAdView } from '../../../components/views/AdView';
 import { SlotId } from '../../../models/Model';
+import { DatasUtil } from '../../../utls/DatasUtil';
 
 @Entry
 @Component
@@ -19,12 +18,8 @@ struct RewardVideoAdPage {
   aboutToAppear(): void {
     let params = router.getParams() as Record<string, Object>;
     this.title = params['title'] as string;
-
-    this.slotIds.push({
-      adSlotId: '3852591891718495',
-      adType: 1,
-      name: '快手广告_新插屏广告_全屏_模版渲染_横版_视频'
-    })
+    let slotIds = DatasUtil.get_placement_ids(Constant.POS_ID_REWARD);
+    this.slotIds.push(...slotIds);
   }
 
   build() {
@@ -64,8 +59,6 @@ struct RewardVideoAdPage {
         })
           .backgroundColor($r('app.color.mainPage_backgroundColor'))
       }
-
-
       ListItem() {
         Text(`广告加载状态：${this.viewModel.model.loadState}`)
           .textAlign(TextAlign.Center)

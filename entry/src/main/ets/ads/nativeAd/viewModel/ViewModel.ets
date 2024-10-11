@@ -1,19 +1,16 @@
 import {
     TBAdInfo,
-  TBAdVideoListener,
-  TBDislikeListener,
-  TBNativeAd,
-  TBNativeAdInteractListener,
-  TBNativeAdLoader,
-    TBNativeAdLoaderListener,
-    TBReward,
-    TBRewardAdInteractionListener, TBType
+    TBAdVideoListener,
+    TBDislikeListener,
+    TBNativeAd,
+    TBNativeAdInteractListener,
+    TBNativeAdLoader,
+    TBNativeAdLoaderListener, TBType
 } from '@tobid/adsdk';
 import Constant from '../../../common/Constant';
 import { ListenerModel } from '../../../models/Model';
 import { BusinessError } from '@ohos.base';
 import { Logger } from 'wind_common';
-import { TestPosId } from '../../../common/TestPosId';
 import { Toast } from '../../../common/Toast';
 
 export class ViewModel implements TBNativeAdLoaderListener {
@@ -26,12 +23,12 @@ export class ViewModel implements TBNativeAdLoaderListener {
     this.model = new ListenerModel();
   }
 
-  loadAdData(adWidth: number, adHeight?: number) {
+  loadAdData(placementId: string, adWidth: number, adHeight?: number) {
     this.model.message = ''
     this.model.loadState = '加载中...'
     if (!this.adLoader) {
       let request: TBType.AdRequest = {
-        placementId: TestPosId.POS_ID_NATIVE,
+        placementId: placementId,
         adWidth: adWidth,
         adHeight: adHeight, // adHeight=0时，模版自适应高度
         userId: 'Codi', //userId方便后续排查用户问题

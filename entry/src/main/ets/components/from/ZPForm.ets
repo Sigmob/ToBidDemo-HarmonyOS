@@ -234,7 +234,7 @@ export struct ZPRow {
       Logger.debug(Constant.TAG, JSON.stringify(event))
       let deviceInfo = display.getDefaultDisplaySync();
       let screenHeight = px2vp(deviceInfo.height)
-      let cheight: number = (this.config.getDatas().length > 5 ? 5 : this.config.getDatas()
+      let cheight: number = (this.config.getDatas().length > 10 ? 10 : this.config.getDatas()
         .length) * Constant.SELECTOR_CELL_HEIGHT
       let cx = event.windowX - event.x
       let cy = event.windowY - event.y + Constant.SELECTOR_CELL_HEIGHT

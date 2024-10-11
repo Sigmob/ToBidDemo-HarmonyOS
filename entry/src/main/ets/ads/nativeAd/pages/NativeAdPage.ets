@@ -8,6 +8,9 @@ import Constant from '../../../common/Constant';
 import { NativeAdView } from '../views/NativeAdView';
 import { PosSlider } from '../../../components/views/PosSlider';
 import DeviceInfo from '../../../common/DeviceInfo';
+import { DatasUtil } from '../../../utls/DatasUtil';
+import { SlotId } from '../../../models/Model';
+import { ZAdView } from '../../../components/views/AdView';
 
 @Entry
 @Component
@@ -16,10 +19,14 @@ struct NativeAdPage {
   @State adHeight?: number = undefined;
   private title: string = ''
   private viewModel = new ViewModel();
+  @State slotIds: SlotId[] = [];
+  @State curSlotId: string = '';
 
   aboutToAppear(): void {
     let params = router.getParams() as Record<string, Object>;
     this.title = params['title'] as string;
+    let slotIds = DatasUtil.get_placement_ids(Constant.POS_ID_NATIVE);
+    this.slotIds.push(...slotIds);
   }
 
   playAd() {
@@ -70,26 +77,15 @@ struct NativeAdPage {
   contentBuilder() {
     List() {
       ListItem() {
-        TitleComponent({
-          title: '加载广告',
-          icon: $r('app.media.icon_load'),
-          rowType: RowType.none,
+        ZAdView({
+          slotIds: $slotIds,
+          curSlotId: $curSlotId,
+          uses2s: true,
+          onAdLoad: (): void => this.viewModel.loadAdData(this.curSlotId,this.adWidth, this.adHeight),
+          onAdPlay: (): void => this.playAd(),
         })
+          .backgroundColor($r('app.color.mainPage_backgroundColor'))
       }
-      .onClick(() => this.viewModel.loadAdData(this.adWidth, this.adHeight))
-      .margin({
-        top: $r('app.float.padding_normal'),
-      })
-
-      ListItem() {
-        TitleComponent({
-          title: '播放广告',
-          icon: $r('app.media.icon_play'),
-          rowType: RowType.none,
-        })
-      }
-      .onClick(() => this.playAd())
-
       ListItem() {
         TitleComponent({
           title: '原生广告ListView',

@@ -13,7 +13,6 @@ import { ListenerModel } from '../../../models/Model';
 import { BusinessError } from '@ohos.base';
 import { SplashBottomView } from '../views/builder';
 import { Logger } from 'wind_common';
-import { TestPosId } from '../../../common/TestPosId';
 import { Toast } from '../../../common/Toast';
 
 export class ViewModel implements TBAdLoadListener {
@@ -26,7 +25,7 @@ export class ViewModel implements TBAdLoadListener {
   }
 
 
-  loadAdData() {
+  loadAdData(placementId: string) {
     this.model.message = ''
     this.model.loadState = '加载中...'
     if (!this.splashAd) {
@@ -37,7 +36,7 @@ export class ViewModel implements TBAdLoadListener {
       }
       //开屏广告需要设置adWidth&adHeight，否则可能影响展示效果
       let request: TBType.AdRequest = {
-        placementId: TestPosId.POS_ID_SPLASH,
+        placementId: placementId,
         userId: 'Codi', //userId方便后续排查用户问题
         adWidth: DeviceInfo.cwidth,
         adHeight: adHeight
