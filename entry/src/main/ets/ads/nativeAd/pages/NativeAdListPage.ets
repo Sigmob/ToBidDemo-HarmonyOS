@@ -14,6 +14,8 @@ struct NativeAdListPage {
   private viewModel = new ListViewModel();
 
   aboutToAppear(): void {
+    let params = router.getParams() as Record<string, Object>;
+    this.viewModel.placementId = params['placementId'] as string;
     this.viewModel.onRefresh();
   }
   aboutToDisappear(): void {

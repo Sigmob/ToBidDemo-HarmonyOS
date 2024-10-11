@@ -1,7 +1,6 @@
 import { RefreshController, RefreshDataSource } from '@abner/refresh';
 import { TBDislikeListener, TBNativeAd, TBNativeAdLoader, TBNativeAdLoaderListener } from '@tobid/adsdk';
 import { TBType } from '@tobid/adsdk';
-import { TestPosId } from '../../../common/TestPosId';
 import { BusinessError } from '@kit.BasicServicesKit';
 import { Logger } from 'wind_common';
 import Constant from '../../../common/Constant';
@@ -13,6 +12,7 @@ import { RandomUtil } from '../../../utls/RandomUtil';
 import DeviceInfo from '../../../common/DeviceInfo';
 
 export class ListViewModel implements TBNativeAdLoaderListener {
+  placementId: string = ''
   private adLoader?: TBNativeAdLoader;
   private isOnLoadMore: boolean = false;
   private isOnRefresh: boolean = false;
@@ -37,7 +37,7 @@ export class ListViewModel implements TBNativeAdLoaderListener {
   private loadAdData() {
     if (!this.adLoader) {
       let request: TBType.AdRequest = {
-        placementId: TestPosId.POS_ID_NATIVE,
+        placementId: this.placementId,
         adWidth: DeviceInfo.cwidth,
         userId: 'Codi', //userId方便后续排查用户问题
         adCount: 1, // 一次加载广告的数量，1～3条，默认为1

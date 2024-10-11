@@ -81,11 +81,12 @@ struct NativeAdPage {
           slotIds: $slotIds,
           curSlotId: $curSlotId,
           uses2s: true,
-          onAdLoad: (): void => this.viewModel.loadAdData(this.curSlotId,this.adWidth, this.adHeight),
+          onAdLoad: (): void => this.viewModel.loadAdData(this.curSlotId, this.adWidth, this.adHeight),
           onAdPlay: (): void => this.playAd(),
         })
           .backgroundColor($r('app.color.mainPage_backgroundColor'))
       }
+
       ListItem() {
         TitleComponent({
           title: '原生广告ListView',
@@ -93,7 +94,11 @@ struct NativeAdPage {
           rowType: RowType.arrow,
         })
       }
-      .onClick(() => router.pushUrl({ url: 'ads/nativeAd/pages/NativeAdListPage' }))
+      .onClick(() => router.pushUrl({
+        url: 'ads/nativeAd/pages/NativeAdListPage', params: {
+          placementId: this.curSlotId
+        }
+      }))
       .margin({
         top: $r('app.float.padding_normal'),
       })

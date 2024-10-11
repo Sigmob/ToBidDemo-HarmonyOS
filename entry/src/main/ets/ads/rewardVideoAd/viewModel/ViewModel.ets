@@ -10,7 +10,6 @@ import Constant from '../../../common/Constant';
 import { ListenerModel } from '../../../models/Model';
 import { BusinessError } from '@ohos.base';
 import { Logger } from 'wind_common';
-import { TestPosId } from '../../../common/TestPosId';
 import { Toast } from '../../../common/Toast';
 
 export class ViewModel implements TBAdLoadListener {
