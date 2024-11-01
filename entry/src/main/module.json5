@@ -33,6 +33,88 @@
         ]
       }
     ],
+    "requestPermissions": [
+      {
+        "name": "ohos.permission.INTERNET",
+        "reason": "$string:permission_reason",
+        "usedScene": {
+          "abilities": [
+            "EntryAbility"
+          ],
+          "when": "inuse"
+        }
+      },
+      {
+        "name": 'ohos.permission.APP_TRACKING_CONSENT',
+        "reason": '$string:permission_reason',
+        "usedScene": {
+          "abilities": [
+            "EntryAbility"
+          ],
+          "when": "inuse"
+        }
+      },
+      {
+        "name": 'ohos.permission.APPROXIMATELY_LOCATION',
+        "reason": '$string:permission_reason',
+        "usedScene": {
+          "abilities": [
+            "EntryAbility"
+          ],
+          "when": "inuse"
+        }
+      },
+      {
+        "name": 'ohos.permission.ACCELEROMETER',
+        "reason": '$string:permission_reason',
+        "usedScene": {
+          "abilities": [
+            "EntryAbility"
+          ],
+          "when": "inuse"
+        }
+      },
+      {
+        "name": 'ohos.permission.GYROSCOPE',
+        "reason": '$string:permission_reason',
+        "usedScene": {
+          "abilities": [
+            "EntryAbility"
+          ],
+          "when": "inuse"
+        }
+      },
+      {
+        "name": 'ohos.permission.GET_WIFI_INFO',
+        "reason": '$string:permission_reason',
+        "usedScene": {
+          "abilities": [
+            "EntryAbility"
+          ],
+          "when": "inuse"
+        }
+      },
+      {
+        "name": 'ohos.permission.GET_NETWORK_INFO',
+        "reason": '$string:permission_reason',
+        "usedScene": {
+          "abilities": [
+            "EntryAbility"
+          ],
+          "when": "inuse"
+        }
+      },
+      {
+        "name": 'ohos.permission.STORE_PERSISTENT_DATA',
+        "reason": '$string:permission_reason',
+        "usedScene": {
+          "abilities": [
+            "EntryAbility"
+          ],
+          "when": "inuse"
+        }
+      }
+    ],
     "extensionAbilities": [
       {
         "name": "EntryBackupAbility",
@@ -44,7 +126,7 @@
             "name": "ohos.extension.backup",
             "resource": "$profile:backup_config"
           }
-        ],
+        ]
       }
     ]
   }

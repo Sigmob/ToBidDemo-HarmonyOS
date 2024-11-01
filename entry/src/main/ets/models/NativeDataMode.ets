@@ -1,5 +1,5 @@
 import { TBNativeAd } from '@tobid/adsdk';
-import { Device } from 'wind_common';
+import { RandomUtil } from 'wind_common';
 
 export class NativeDataModel {
   uniqId: string;
@@ -10,6 +10,6 @@ export class NativeDataModel {
   nativeAd?: TBNativeAd;
   
   constructor() {
-    this.uniqId = Device.randomUUID();
+    this.uniqId = RandomUtil.generateRandomUUID();
   }
 }
