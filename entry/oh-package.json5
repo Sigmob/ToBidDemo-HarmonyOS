@@ -7,13 +7,13 @@
   "license": "",
   "dependencies": {
     "@tobid/adsdk": "1.3.1",
-    "wind_common": '0.6.14',
     "@tobid/csj_adapter": "1.3.1",
     "@tobid/gromore_adapter": "1.3.1",
     "@tobid/kuaishou_adapter": "1.3.1",
     "@tobid/gdt_adapter": "1.3.1",
     "@tobid/huawei_adapter": "1.3.1",
 
+    "wind_common": '0.6.14',
     "@abner/refresh": "^1.3.6"
   },
 
