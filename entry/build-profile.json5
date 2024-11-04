@@ -7,7 +7,8 @@
           '@tobid/huawei_adapter',
           '@tobid/kuaishou_adapter',
           '@tobid/csj_adapter',
-          '@tobid/gromore_adapter'
+          '@tobid/gromore_adapter',
+          '@tobid/gdt_adapter'
         ]
       }
     }
